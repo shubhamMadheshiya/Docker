@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: "mongo:latest"
+    container_name: "some-mongo"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+    ports:
+      - "27017:27017"  # Expose MongoDB port
+    networks:
+      - my-net #compose automatic create ites own network
+
+  mynetwork:
+    build: ./  # Build from the current directory
+    container_name: "mynetwork"
+    depends_on:
+      - mongodb  # Ensure MongoDB starts before this service
+    stdin_open: true  # Keep stdin open (useful for interactive debugging)
+    tty: true         # Allocate a pseudo-TTY (for interactive processes)
+    networks:
+      - my-net
+
+networks:
+  my-net:
+    driver: bridge
