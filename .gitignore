@@ -2,6 +2,7 @@
 
 # dependencies
 /testapp/node_modules
+/communication/node_modules
 /.pnp
 .pnp.js
 
