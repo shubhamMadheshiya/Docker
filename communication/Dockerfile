@@ -14,4 +14,4 @@ RUN npm install
 COPY . .
 
 # Command to run the application
-CMD [ "node","container.js" ]
+CMD [ "node","network.js" ]
